@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {Todo} from '../shared/interfaces/todo.interface';
 import {NgClass, NgForOf, NgIf, NgStyle} from '@angular/common';
 import {AlertComponent} from '../shared/components/alert/alert.component';
+import {AddTodoFormComponent} from './add-todo-form/add-todo-form.component';
+import {TodoComponent} from './todo/todo.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,7 +13,9 @@ import {AlertComponent} from '../shared/components/alert/alert.component';
     NgIf,
     NgStyle,
     NgClass,
-    AlertComponent
+    AlertComponent,
+    AddTodoFormComponent,
+    TodoComponent
   ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.css'
@@ -32,8 +36,9 @@ export class TodoListComponent {
   // changeTodoStatus(i: number) {
   //   this.todos[i].isCompleted = !this.todos[i].isCompleted;
   // }
-  changeTodoStatus(todo: Todo) {
-    todo.isCompleted = !todo.isCompleted;
+
+  deleteTodo(i: number) {
+    this.todos.splice(i, 1);
   }
 
   clearErrorMessage() {
